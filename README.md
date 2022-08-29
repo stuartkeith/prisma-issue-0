@@ -1,0 +1,3 @@
+- copy `.env.example` to `.env` and point it to a MySQL DB
+- `npm install`
+- `node main.js`

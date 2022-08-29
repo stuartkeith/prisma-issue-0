@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Pet {
+  id    String  @id
+  Owner Owner[]
+}
+
+model Owner {
+  id Int @id @default(autoincrement())
+
+  pet   Pet    @relation(fields: [petId], references: [id])
+  petId String
+}
