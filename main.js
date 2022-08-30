@@ -9,16 +9,16 @@ async function main() {
 
   await prisma.pet.create({
     data: {
-      // append NO-BREAK-SPACE
+      // use NO-BREAK-SPACE
       // https://www.fileformat.info/info/unicode/char/00a0/index.htm
-      id: "dog" + String.fromCharCode(parseInt('00A0', 16))
+      id: "dog" + String.fromCharCode(parseInt('00A0', 16)) + "example"
     }
   });
 
   // can successully refer to the key without any space
   await prisma.owner.create({
     data: {
-      petId: "dog"
+      petId: "dog example"
     }
   });
 
@@ -32,7 +32,7 @@ async function main() {
   // "Inconsistent query result: Field pet is required to return data, got `null` instead"
   const result = await prisma.owner.findFirst({
     where: {
-      petId: "dog"
+      petId: "dog example"
     },
     select: {
       id: true,
